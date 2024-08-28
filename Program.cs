@@ -5,10 +5,10 @@ namespace MVC01
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddControllers();
+            builder.Services.AddControllersWithViews();
             var app = builder.Build();
             app.UseRouting();
-
+            app.UseStaticFiles();
             #region
             //app.UseEndpoints(endpoints =>
             //{
