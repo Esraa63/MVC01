@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <title>Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <header>
+        <center>
+            <a href="/Home/Index" class="btn btn-primary">Home</a>
+            <a href="/Home/AboutUs" class="btn btn-dark">AboutUs</a>
+            <a href="/Home/ContactUs" class="btn btn-danger">ContactUs</a>
+            <a href="/Home/Privacy" class="btn btn-secondary">Privacy</a>
+        </center>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+<footer class="fixed-bottom">
+    <center>
+        copyright &copy; route @DateTime.Now.Year
+    </center>
+</footer>
+</html>
