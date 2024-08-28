@@ -7,24 +7,23 @@ namespace MVC01
             var builder = WebApplication.CreateBuilder(args);
             var app = builder.Build();
             app.UseRouting();
-            app.Use(async (context, next) =>
-            {
-                Endpoint endpoint = context.GetEndpoint();
-                if (endpoint is null)
-                    await context.Response.WriteAsync("your requested page not found");
-                await next();
-            }
-            
-            );
+           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/Home", async context =>
                 {
                     await context.Response.WriteAsync("you are in home page");
                 });
-                endpoints.MapPost("/Products", async context =>
+                endpoints.MapGet("/Products/{id}", async context =>
                 {
-                    await context.Response.WriteAsync("you are in products page");
+                    int id = Convert.ToInt32( context.Request.RouteValues["id"]);
+                       await context.Response.WriteAsync($"you are in products page with id => {id}");
+                });
+                endpoints.MapGet("/Books/{id}/{author}", async context =>
+                {
+                    int id = Convert.ToInt32(context.Request.RouteValues["id"]);
+                    string author = context.Request.RouteValues["author"].ToString();
+                    await context.Response.WriteAsync($"you are in books page with id => {id} and author => {author}");
                 });
             });
             app.Run(async (HttpContext) =>
