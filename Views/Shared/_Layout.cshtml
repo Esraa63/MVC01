@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -11,11 +13,24 @@
 <body>
     <header>
         <center>
-            <a href="/Home/Index" class="btn btn-primary">Home</a>
-            <a href="/Home/AboutUs" class="btn btn-dark">AboutUs</a>
+          @*   @*1. Html Tag*@
+           @*  <a href="/Home/Index" class="btn btn-primary">Home</a>
+            <a href="/Home/AboutUs" class="btn btn-warning">AboutUs</a>
             <a href="/Home/ContactUs" class="btn btn-danger">ContactUs</a>
-            <a href="/Home/Privacy" class="btn btn-secondary">Privacy</a>
-        </center>
+            <a href="/Home/Privacy" class="btn btn-secondary">Privacy</a> *@
+
+            @*2. Html Helper*@
+@*             @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-primary"})
+            @Html.ActionLink("AboutUs", "AboutUs", "Home", null, new { @class = "btn btn-warning" })
+            @Html.ActionLink("ContactUs", "ContactUs", "Home", null, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Privacy", "Privacy", "Home", null, new { @class = "btn btn-secondary" }) *@
+
+            @*3. Tag Helper*@
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Home</a>
+            <a asp-controller="Home" asp-action="AboutUs" class="btn btn-warning">AboutUs</a>
+            <a asp-controller="Home" asp-action="ContactUs" class="btn btn-danger">ContactUs</a>
+            <a asp-controller="Home" asp-action="Privacy" class="btn btn-secondary">Privacy</a>
+        </center> 
     </header>
     <div>
         @RenderBody()
