@@ -14,12 +14,18 @@ namespace MVC01
                 {
                     await context.Response.WriteAsync("you are in home page");
                 });
-                endpoints.MapGet("/Products/{id}", async context =>
+                endpoints.MapGet("/Products/{id?:int?}", async context =>
                 {
-                    int id = Convert.ToInt32( context.Request.RouteValues["id"]);
-                       await context.Response.WriteAsync($"you are in products page with id => {id}");
+                    var idData = context.Request.RouteValues["id"];
+                    if (idData != null)
+                    {
+                        int id = Convert.ToInt32(context.Request.RouteValues["id"]);
+                        await context.Response.WriteAsync($"you are in products page with id => {id}");
+                    }
+                    else
+                        await context.Response.WriteAsync("you are in products page");
                 });
-                endpoints.MapGet("/Books/{id}/{author}", async context =>
+                endpoints.MapGet("/Books/{id}/{author:alpha:minlength(4):maxlength(6)}", async context =>
                 {
                     int id = Convert.ToInt32(context.Request.RouteValues["id"]);
                     string author = context.Request.RouteValues["author"].ToString();
