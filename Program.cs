@@ -7,7 +7,7 @@ namespace MVC01
             var builder = WebApplication.CreateBuilder(args);
             var app = builder.Build();
 
-            app.MapGet("/", () => "Testtttt02");
+            app.MapGet("/", () => "Hello World sesstion one");
 
             app.Run();
         }
